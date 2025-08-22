@@ -54,13 +54,17 @@ model Product {
 }
 
 model Order {
-  id               Int              @id @default(autoincrement())
-  restaurantId     String
-  restaurant       Restaurant       @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
-  total            Float
-  status           OrderStatus
-  consuptionMethod ConsuptionMethod
-  orderProduct     OrderProduct[]
+  id                Int               @id @default(autoincrement())
+  restaurantId      String
+  restaurant        Restaurant        @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  total             Float
+  status            OrderStatus
+  consumptionMethod ConsumptionMethod
+  orderProduct      OrderProduct[]
+  costumerName      String
+  costumerCpf       String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
 }
 
 model OrderProduct {
@@ -81,7 +85,7 @@ enum OrderStatus {
   FINISHED
 }
 
-enum ConsuptionMethod {
+enum ConsumptionMethod {
   TAKE_AWAY
   DINE_IN
 }
